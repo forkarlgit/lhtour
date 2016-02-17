@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ asset('css/colors.css') }}" type="text/css" />
 <!-- Site Specific Style test -->
-<link rel="stylesheet" href="{{ asset('css/main.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <!--[if lt IE 9]>

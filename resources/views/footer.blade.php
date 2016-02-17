@@ -1,51 +1,68 @@
-<!-- Footer ============================================= -->
 <footer class="content-wrapper">
-    <div class="inner row">
-        <div class="text-box">
-            <span class="heading-action">Navigation <i></i></span>
-            <div class="text">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/updates/videos">HD Videos</a></li>
-                    <li><a href="/categories">Categories</a></li>
-                    <li><a href="/sites">Sites</a></li>
-                    <li><a href="/dvds">DVDs</a></li>
-                    <li><a href="/pornstars">Stars</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/live">Live Sex</a></li>
-                    <li><a href="/logout">Sign out</a></li>
-                </ul>
+    <div class="container">
+        <div class="inner row">
+            <div class="col-sm-5 footer-girls-container">
+                <img src="http://networktour.yourpaysitepartner.com/themes/lh_tour/assets/images/footer-girls.jpg" class="img-responsive footer-girls">
             </div>
-        </div>
-        <div class="text-box">
-            <span class="heading-action">Quick Links <i></i></span>
-            <div class="text">
-                <ul>
-                    <li><a href="http://www.customerhelponline.com" rel="nofollow">Customer Support</a></li>
-                    <li><a href="http://www.customerhelponline.com" rel="nofollow">Contact us</a></li>
-                    <li><a href="/legal#refund">Refund Policy</a></li>
-                    <li><a href="/export">Webmasters, export videos for your site.</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="text-box -legal">
-            <span class="heading-action">Legal <i></i></span>
-            <div class="text">
-                <p>Warning: This Site contains sexually explicit material and is intended solely for adults only!<br>
-                    If you are easily offended by and or if you cannot legally view this type of material where you reside, PLEASE EXIT NOW!
+            <div class="col-sm-7">
+                <h3>Need more convincing?</h3>
+                <p class="footer-sales">
+                    Lethal Harcore has the largest HD adult video library available online with daily updates! With Unlimited downloads and the ability to watch on any device you’ll have everything you need with your Membership! Join Today!
                 </p>
-                <p><a href="/legal#terms">Terms of Service</a> | <a href="/legal#privacy">Privacy</a></p>
-                <p>Please visit <a rel="nofollow" href="https://epoch.com/billingsupport">Epoch.com</a>, <a rel="nofollow" href="http://www.safebilling.com/">Safe Billing</a> or <a rel="nofollow" href="https://cs.segpay.com/">SegPay</a>, our authorized sales agents.</p>
-                <p>All models were over the age of 18 at time of photography.</p>
-                <p><a href="/legal#2257">18 U.S.C. 2257 Record-Keeping Requirements Compliance Statement</a></p>
-                <small>© 2015 Lethal Hardcore - All Rights Reserved.</small>
-                <img src="{{ asset('img/corps.gif?cb=171717&amp;ct=393f41&amp;ct=333333') }}">
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-6">
+                        <a href="http://networktour.yourpaysitepartner.com" class="footer-links">Home</a>
+                        <a href="http://networktour.yourpaysitepartner.com/updates" class="footer-links">HD Videos</a>
+                        <a href="http://networktour.yourpaysitepartner.com/models" class="footer-links">Stars</a>
+                        <a href="http://networktour.yourpaysitepartner.com/tags" class="footer-links">Categories</a>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                        <a href="http://networktour.yourpaysitepartner.com/dvds" class="footer-links">DVDs</a>
+                        <a href="http://members.yourpaysitepartner.com" class="footer-links">Members</a>
+                        <a href="http://networktour.yourpaysitepartner.com/join" class="footer-links">Join Now</a>
+                    </div>
+                </div>
+
+                <p id="footer-bottom-links" class="text-center">
+
+                        <a href="http://nats.kennyspennies.com">
+                            Webmasters
+                        </a>
+                        &nbsp;|&nbsp;
+                        <a href="http://customercare.co">
+                            Support
+                        </a>
+                        &nbsp;|&nbsp;
+                        <a href="#">
+                            Privacy Policy
+                        </a>
+                        &nbsp;|&nbsp;
+                        <a href="#">
+                            Terms and Conditions
+                        </a>
+                    <br>
+                    <br>
+
+                        <a href="http://epoch.com">
+                            Epoch
+                        </a>
+                        &nbsp;|&nbsp;
+                        <a href="http://segpay.com">
+                            Segpay
+                        </a>
+                        &nbsp;|&nbsp;
+                        <a href="#">
+                            WTS
+                        </a>
+                        &nbsp;
+                        our authorized sales agent.
+                        <br>
+                        <a href="/legal#2257">18 U.S.C. 2257 Record-Keeping Requirements Compliance Statement</a>
+                        <br>
+                        © 2016 Lethal Hardcore - All Rights Reserved.
+                </p>
             </div>
-        </div>
-        <div class="join-box">
-            <a href="/join/direct">
-                <img src="{{ asset('img/logo.svg') }}" alt="Lethal Hardcore"><span>Join Now</span>
-            </a>
         </div>
     </div>
-</footer><!-- #footer end -->
+</footer>

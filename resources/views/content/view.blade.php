@@ -1,18 +1,7 @@
 @extends('layout')
 
-@section('page_header_includes')
-<link href="{{ asset('css/star-rating.min.css') }}" media="all" rel="stylesheet" type="text/css" />
-<script src="{{ asset('js/star-rating.min.js') }}" type="text/javascript"></script>
-@stop
-
 @section('content')
 
-@include('site.header')
-<style type="text/css">
-.breadcrumb-container {
-    display: none;
-}
-</style>
 <!-- Content  ============================================= -->
 <section id="content" class="view-page">
 
@@ -63,254 +52,139 @@
             @endif
         </div>
         <div class="col-md-3">
-            <h4>FILL UP FORM</h4>
+            <div class="form-cont">
+            @include('includes.video_form')
+            </div>
+            <div class="related-cont">
+                <h4>Related Videos</h4>
+                @foreach($contents as $key => $content)
+                <div class='col-md-6 col-sm-12 col-xs-12 related-thumbs'>
+                    <a href="{{ $content->link }}">
+                        <img src="{{ $content->thumb }}" class="img-responsive center-block">
+                    </a>
+                    <h3><a href="{{ $content->link }}">{{ $content->title }}</a></h3>
+                </div>
+                @endforeach
+                <a class="btn primary related-btn" href="{{ url('join') }}">GET YOUR ACCESS NOW</a>
+            </div>
         </div>
         <div class="clearfix"></div>
         <div class="col-md-12">
-            <div class="clearfix">
-                <div class="entry-title">
-                    <h2>{{ $content->title }} @if($content->has_videos) <small>({{ $content->videos_duration }} in 1080p)</small> @else <small>({{$content->photos_count}} HD Photos)</small> @endif</h2>
-                </div><!-- .entry-title end -->
-            </div>
-            <div class="left-box" id="playerDetail">
-                <div class="inner">
-
-                    <div class="pdSRC">
-                        <p class="pull-left"> From DVD <a href="/dvds/{{ $content_dvds->first()->id }}">{{ $content_dvds->first()->title }}</a> </p>
-                        <!-- AddToAny BEGIN -->
-                        <div class="a2a_kit a2a_kit_size_32 a2a_default_style pull-right">
-                            <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-                            <a class="a2a_button_facebook"></a>
-                            <a class="a2a_button_twitter"></a>
-                            <a class="a2a_button_google_plus"></a>
-                        </div>
-                        <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
-                        <!-- AddToAny END -->
+            <div class="entry-title">
+                <div class="row">
+                    <div class="col-md-1">
+                        <a href="/dvds/{{ $content_dvds->first()->id }}" class="sitelogo dvd-cover">
+                            <img src="{{ $content_dvds->first()->front_cover }}" alt="{{ $content_dvds->first()->title }}">
+                        </a>
                     </div>
-                    <div class="top">
-                        <div class="controls">
-                            <div class="pdLeft">
-                                <div class="rating">
-                                    <div class="voting" data-id="5:2969312">
-                                        <div class="vote-bar-wrapper">
-                                            <span class="vote-bar" style="width: 0%;"></span>
-                                        </div>
-                                        <div class="row">
-                                            <a class="up" href="#"><i class="fa fa-thumbs-o-up"></i></a>
-                                            <a class="down" href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                                        </div>
-                                    </div> {{ ($content->rating / 5) * 100 }}% Like, {{ $content->views * 3 }} Votes
-                                </div>
-                                <div class="favor">
-                                    <a href="#" class="favorite add-to-favorites" data-is-favorite="{{$is_favorite}}" @if($is_favorite)disabled @endif><i class="fa fa-heart"></i></a> 0 favorites
-                                </div>
-                            </div>
-                            <div class="views">{{ $content->fake_views}} views <span>Added {{ date('d F Y', strtotime($content->formatted_date) ) }}</span>
-                            </div>
-                                    <div class="menu"><!--
-                                        <a href="#flag"><i class="icon-flag"></i></a>
-                                        <a href="#playlist">Playlists</a>
-                                        <a href="#embed" class="mhide">Embed</a>-->
-                                        <div class="dropWrap"> <a href="#drop" class="dl">Download <span></span></a>
-                                            <div class="drop">
-                                                <ul>
-                                                    @if(count($videos) > 0)
-                                                    @foreach($videos as $video)
-                                                    @foreach($video->downloads as $download)
-                                                    <li>
-                                                        <a href="{{ url('download/'.$content->id.'/'.$video->id.'/'.$download) }}"><span class="desc">{{ $download }} Video</span>
-                                                            <span class="quality">1080p HD</span>
-                                                            <span class="size">502mb</span>
-                                                        </a>
-                                                    </li>
-                                                    @endforeach
-                                                    @endforeach
-                                                    @endif
-
-                                                    @if(count($photos) > 0)
-                                                    @foreach($photos as $photo)
-                                                    <li>
-                                                        <a href="{{ url('download-zip/'.$content->id.'/'.$photo->id) }}"><span class="desc">Download Photos Zip</span>
-                                                            <span class="quality">1080p HD</span>
-                                                            <span class="size">502mb</span>
-                                                        </a>
-                                                    </li>
-                                                    @endforeach
-                                                    @endif
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="tab-playlist" class="tabContent addPlaylist">
-                                        <h3>Add to playlist</h3>
-                                        <p>Click on an existing playlist to add this scene, or create a new playlist below.</p>
-                                        <ul>
-                                            <li>
-                                                <a href="#add" data-id="593662"><i class="icon-checkmark"></i> My Playlist (<span>1</span>)</a>
-                                                <a href="/cute-teen-with-a-nice-smile-wants-to-show-off-her-dick-suckin-1493758?pl=593662" class="play-link"><i class="icon-play"></i></a>
-                                            </li>
-                                        </ul>
-                                        <h3>New Playlist</h3>
-                                        <form>
-                                            <input type="text" name="name" placeholder="Playlist name" autocomplete="off">
-                                            <input type="submit" value="New Playlist"><span class="msg main"></span>
-                                        </form>
-                                    </div>
-                                    <div id="tab-flag" class="tabContent flag">
-                                        <form action="/" method="post" class="row">
-                                            <div class="radios"> <p>Flag or report this video:</p>
-
-                                                <fieldset>
-                                                    <div>
-                                                        <input type="radio" name="reason_id" value="1">
-                                                        <label for="inappropriate">Inappropriate</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="radio" name="reason_id" value="2">
-                                                        <label for="inappropriate">Underage</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="radio" name="reason_id" value="3">
-                                                        <label for="inappropriate">Copyrighted Material</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="radio" name="reason_id" value="4">
-                                                        <label for="inappropriate">Broken video / images</label>
-                                                    </div>
-                                                    <div>
-                                                        <input type="radio" name="reason_id" value="5">
-                                                        <label for="inappropriate">Other</label>
-                                                    </div>
-                                                </fieldset>
-                                            </div>
-                                            <div class="additional">
-                                                <p>Additional information (optional):</p>
-                                                <textarea name="reason"></textarea>
-                                                <input type="submit" class="btn primary" value="Send">
-                                            </div>
-                                            <span class="msg main"></span>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="description">
-                                <a href="/dvds/{{ $content_dvds->first()->id }}" class="sitelogo dvd-cover">
-                                    <img src="{{ $content_dvds->first()->front_cover }}" alt="{{ $content_dvds->first()->title }}"></a>
-                                    <p>{!! $content->description !!}</p>
-                                    <a class="trigger-text btn primary" href="#" style="display: none;">Read more</a>
-                                </div>
-                                <div class="information">
-                                    <div class="data">
-                                        <div class="models-wrapper actors">
-                                            @foreach($content_models as $model)
-                                            <a class="model" href="/model/{{ $model->id }}/{{ str_slug($model->name) }}"><img src="{{ $model->thumb }}" alt="{{ $model->name }}"><span>{{ $model->name }}</span></a>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <div class="comments">
-                                        <!-- Comments
-                                        ============================================= -->
-                                        <div id="comments" class="clearfix">
-
-                                            <div class="clear"></div>
-
-                                            <div id="respond" class="clearfix">
-
-                                                <form class="clearfix" action="#" method="post" id="commentform">
-
-                                                    <div class="col_full">
-                                                        <label for="author">Username</label>
-                                                        <input type="text" name="author" id="author" value="{{ \Request::server('PHP_AUTH_USER') }}" size="22" tabindex="1" class="sm-form-control"  readonly>
-                                                    </div>
-
-                                                    <div class="clear"></div>
-
-                                                    <div class="col_full">
-                                                        <label for="comment">Comment</label>
-                                                        <textarea id="comment" name="comment" cols="58" rows="7" tabindex="4" class="sm-form-control"></textarea>
-                                                    </div>
-
-                                                    <div class="col_full nobottommargin">
-                                                        <button name="submit" type="button" id="submit-button" tabindex="5" value="Submit" class="button button-3d nomargin">Submit Comment</button>
-                                                    </div>
-
-                                                </form>
-
-                                            </div><!-- #respond end -->
-
-                                            <ol id="commentslist" class="commentlist clearfix">
-                                                @include('content.comments_list')
-                                            </ol><!-- .commentlist end -->
-
-                                        </div><!-- #comments end -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
+                    <div class="col-md-11 nopaddingleft">
+                        <h2>{{ $content->title }}</h2>
+                        <div class="col-md-3 nopaddingleft"> From DVD <a href="/dvds/{{ $content_dvds->first()->id }}" class="green">{{ $content_dvds->first()->title }}</a> </div>
+                        <div class="col-md-3"> Added: <span class="green">December 18, 2015</span> </div>
+                        <p>{!! $content->description !!}</p>
                     </div>
                 </div>
+            </div><!-- .entry-title end -->
+        </div>
+        <div class="clearfix"></div>
 
-            </section><!-- #content end -->
+        <div class="col-md-12">
+            <div class="user-actions">
+                <div class="pull-left">
+                    <a href="{{ url('join') }}" class="btn primary like-btn"><i class="fa fa-thumbs-up"></i> Like</a>
+                    <a href="{{ url('join') }}" class="btn primary dislike-btn"><i class="fa fa-thumbs-down"></i> Dislike</a>
+                </div>
+                <div class="pull-right">
+                    <a href="{{ url('join') }}" class="btn primary playlist-btn"> Playlist</a>
+                    <a href="{{ url('join') }}" class="btn primary download-btn"><i class="fa fa-chevron-down"></i> Download</a>
+                    <a href="{{ url('join') }}" class="btn primary"> Join Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-12">
+            <h2 class="box-title">Newest Videos
+                <a class="btn primary pull-right" href="{{ url('videos') }}">View All</a>
+            </h2>
 
-            <script type="text/javascript">
+            <div class="row">
+                @foreach($contents as $key => $content)
+                @include('includes.content_thumb')
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section><!-- #content end -->
 
-            jQuery(document).ready(function($) {
 
-                $("#rating").rating({
-                    glyphicon: false,
-                    ratingClass: "rating-fa",
-                    showClear: false,
-                    showCaption: false,
-                    size: "xs",
-                    @if($has_rated)
-                    readonly: true,
-                    @endif
-                });
+<script type="text/javascript">
 
-                $('#rating').on('rating.change', function(event, value, caption) {
-                    $.post("{{ url('rate') }}", { id: {{ $content->id }}, rating: value });
-                });
+jQuery(document).ready(function($) {
+    $(".radio-cont").each(function(){
+        $(this).click(function(){
+            $(".radio-cont.active").removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+    $("div.radio").each(function(){
+        $(this).click(function(){
+            $("div.radio.active").removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+    $("#rating").rating({
+        glyphicon: false,
+        ratingClass: "rating-fa",
+        showClear: false,
+        showCaption: false,
+        size: "xs",
+        @if($has_rated)
+        readonly: true,
+        @endif
+    });
 
-                $('#submit-button').click(function(){
-                    $.post("{{ url('comment') }}", { id: {{ $content->id }}, username: $('#author').val(), message: $('#comment').val() }, function(data){
-                        $('#commentslist').html(data);
-                        $('#comment').val('');
-                    });
-                });
+    $('#rating').on('rating.change', function(event, value, caption) {
+        $.post("{{ url('rate') }}", { id: {{ $content->id }}, rating: value });
+    });
 
-                var doingAjax = false;
+    $('#submit-button').click(function(){
+        $.post("{{ url('comment') }}", { id: {{ $content->id }}, username: $('#author').val(), message: $('#comment').val() }, function(data){
+            $('#commentslist').html(data);
+            $('#comment').val('');
+        });
+    });
 
-                $('.add-to-favorites').on('click', function(event) {
-                    event.preventDefault();
+    var doingAjax = false;
 
-                    if (doingAjax) {
-                        return;
-                    }
+    $('.add-to-favorites').on('click', function(event) {
+        event.preventDefault();
 
-                    var $this = $(this),
-                    isFavorite = $this.data('is-favorite');
+        if (doingAjax) {
+            return;
+        }
 
-                    if (isFavorite) {
-                        return;
-                    }
+        var $this = $(this),
+        isFavorite = $this.data('is-favorite');
 
-                    doingAjax = true;
+        if (isFavorite) {
+            return;
+        }
 
-                    $.ajax({ method: 'POST', url: '{{ url('favorites') }}', data: { content_id: '{{ $content->id }}' } }).done(function(response) {
-                        if (response.success) {
-                            $this.text('Added to Favorites');
-                        }
+        doingAjax = true;
 
-                        if (response.message) {
-                            window.alert(response.message);
-                        }
-                        doingAjax = false;
-                    });
-                });
+        $.ajax({ method: 'POST', url: '{{ url('favorites') }}', data: { content_id: '{{ $content->id }}' } }).done(function(response) {
+            if (response.success) {
+                $this.text('Added to Favorites');
+            }
 
-            });
+            if (response.message) {
+                window.alert(response.message);
+            }
+            doingAjax = false;
+        });
+    });
+
+});
 
 </script>
 <script type="text/javascript">

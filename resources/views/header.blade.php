@@ -21,9 +21,9 @@
       <div class="container">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/"><i class="fa fa-home"></i></a></li>
-        <li><a href="/videos">HD Videos</a></li>
-        <li><a href="/pornstars">Pornstars</a></li>
-        <li><a href="/categories">Categories</a></li>
+        <li><a href="/updates/videos">HD Videos</a></li>
+        <li><a href="/mdoels">Pornstars</a></li>
+        <li><a href="/tags">Categories</a></li>
         <li><a href="/dvds">DVDs</a></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
